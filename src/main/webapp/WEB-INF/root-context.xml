@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<bean class="springwebblank.RootContextHolder"/>
+
+	<bean id="myWebApplicationInitializer" class="springwebblank.MyWebApplicationInitializer"></bean>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	<!-- freemarker配置 -->
+	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="classpath:"></property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">0</prop>	<!-- 设置模板加载延迟,亲测单位竟然是秒 -->
+				<prop key="default_encoding">UTF-8</prop>
+				<prop key="classic_compatible">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+<!-- 	<bean id="freeMarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean"> -->
+<!--         <property name="templateLoaderPath" value="/WEB-INF/" /> -->
+<!--     </bean> -->
+
+</beans>

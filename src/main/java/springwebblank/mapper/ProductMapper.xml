@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springwebblank.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="springwebblank.domain.Product">
+    <id column="productId" jdbcType="INTEGER" property="productId" />
+    <result column="productName" jdbcType="VARCHAR" property="productName" />
+    <result column="unitPrice" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="unitsInStock" jdbcType="INTEGER" property="unitsInStock" />
+    <result column="discontinued" jdbcType="BIT" property="discontinued" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    productId, productName, unitPrice, unitsInStock, discontinued
+  </sql>
+  <select id="selectByExample" parameterType="springwebblank.domain.ProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where productId = #{productId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product
+    where productId = #{productId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="springwebblank.domain.ProductExample">
+    delete from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="springwebblank.domain.Product">
+    insert into product (productId, productName, unitPrice, 
+      unitsInStock, discontinued)
+    values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DECIMAL}, 
+      #{unitsInStock,jdbcType=INTEGER}, #{discontinued,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="springwebblank.domain.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        productId,
+      </if>
+      <if test="productName != null">
+        productName,
+      </if>
+      <if test="unitPrice != null">
+        unitPrice,
+      </if>
+      <if test="unitsInStock != null">
+        unitsInStock,
+      </if>
+      <if test="discontinued != null">
+        discontinued,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null">
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unitsInStock != null">
+        #{unitsInStock,jdbcType=INTEGER},
+      </if>
+      <if test="discontinued != null">
+        #{discontinued,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="springwebblank.domain.ProductExample" resultType="java.lang.Long">
+    select count(*) from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update product
+    <set>
+      <if test="record.productId != null">
+        productId = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null">
+        productName = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitPrice != null">
+        unitPrice = #{record.unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.unitsInStock != null">
+        unitsInStock = #{record.unitsInStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.discontinued != null">
+        discontinued = #{record.discontinued,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update product
+    set productId = #{record.productId,jdbcType=INTEGER},
+      productName = #{record.productName,jdbcType=VARCHAR},
+      unitPrice = #{record.unitPrice,jdbcType=DECIMAL},
+      unitsInStock = #{record.unitsInStock,jdbcType=INTEGER},
+      discontinued = #{record.discontinued,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="springwebblank.domain.Product">
+    update product
+    <set>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null">
+        unitPrice = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unitsInStock != null">
+        unitsInStock = #{unitsInStock,jdbcType=INTEGER},
+      </if>
+      <if test="discontinued != null">
+        discontinued = #{discontinued,jdbcType=BIT},
+      </if>
+    </set>
+    where productId = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springwebblank.domain.Product">
+    update product
+    set productName = #{productName,jdbcType=VARCHAR},
+      unitPrice = #{unitPrice,jdbcType=DECIMAL},
+      unitsInStock = #{unitsInStock,jdbcType=INTEGER},
+      discontinued = #{discontinued,jdbcType=BIT}
+    where productId = #{productId,jdbcType=INTEGER}
+  </update>
+</mapper>

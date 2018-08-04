@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="E:\code\javaEECode\MybatisGenerator\lib\mysql-connector-java-5.1.28-bin.jar" />
+	<context id="productTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/testypq" userId="root"
+			password="root" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="springwebblank.domain"
+			targetProject="springwebblank\src\main\java">
+<!-- 			<property name="immutable" value="true" /> 会生成带参数的默认构造函数-->
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="springwebblank.mapper"
+			targetProject="springwebblank\src\main\java" />
+		<javaClientGenerator targetPackage="springwebblank.mapper"
+			targetProject="springwebblank\src\main\java" type="XMLMAPPER" />
+		<table tableName="product">
+            <property name="useActualColumnNames" value="true"/>
+		</table>
+	</context>
+</generatorConfiguration>
