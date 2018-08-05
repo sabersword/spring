@@ -249,11 +249,14 @@
 	<artifactId>httpclient</artifactId>
 	<version>4.5.2</version>
 </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+        </dependency>
 
 
-
-
-		<!-- <dependency> -->
+        <!-- <dependency> -->
 <!--     <groupId>org.springframework.data</groupId> -->
 <!--     <artifactId>spring-data-redis</artifactId> -->
 <!--     <version>1.7.3.RELEASE</version> -->

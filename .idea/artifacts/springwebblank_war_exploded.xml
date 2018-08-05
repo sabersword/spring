@@ -96,6 +96,7 @@
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:16.0.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

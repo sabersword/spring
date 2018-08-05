@@ -21,11 +21,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.format.support.FormattingConversionService;
+import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import springwebblank.context.MvcContextHolder;
+import springwebblank.context.RootContextHolder;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
@@ -84,6 +89,15 @@ public class MyController {
 		ApplicationContext mac = MvcContextHolder.getMvcApplicationContext();
 		ApplicationContext rac = RootContextHolder.getRootApplicationContext();
 		ServletContext sc = MvcContextHolder.getServletContext();
+
+		// MvcApplicationContext对于两个bean都能获取到(因为他的parent为RootApplicationContext)
+		FormattingConversionService customConversionServiceByMvc = (FormattingConversionService) MvcContextHolder.getBeanFactory().getBean("CustomConversionService");
+		FreeMarkerConfigurer freeMarkerConfigurerByMvc = (FreeMarkerConfigurer) MvcContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
+
+		// RootApplicationContext只能获取到自己的bean, 获取不到MvcApplicationContext, 因为他的parent是null
+		FormattingConversionService customConversionServiceByRoot = (FormattingConversionService) RootContextHolder.getBeanFactory().getBean("CustomConversionService");
+		FreeMarkerConfigurer freeMarkerConfigurerByRoot = (FreeMarkerConfigurer) RootContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
+
 
 		Logger logger = LoggerFactory.getLogger(MyController.class);
 		logger.debug("this is debug");
