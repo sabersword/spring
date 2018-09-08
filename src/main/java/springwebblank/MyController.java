@@ -91,12 +91,12 @@ public class MyController {
 		ServletContext sc = MvcContextHolder.getServletContext();
 
 		// MvcApplicationContext对于两个bean都能获取到(因为他的parent为RootApplicationContext)
-		FormattingConversionService customConversionServiceByMvc = (FormattingConversionService) MvcContextHolder.getBeanFactory().getBean("CustomConversionService");
-		FreeMarkerConfigurer freeMarkerConfigurerByMvc = (FreeMarkerConfigurer) MvcContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
+//		FormattingConversionService customConversionServiceByMvc = (FormattingConversionService) MvcContextHolder.getBeanFactory().getBean("CustomConversionService");
+//		FreeMarkerConfigurer freeMarkerConfigurerByMvc = (FreeMarkerConfigurer) MvcContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
 
 		// RootApplicationContext只能获取到自己的bean, 获取不到MvcApplicationContext, 因为他的parent是null
-		FormattingConversionService customConversionServiceByRoot = (FormattingConversionService) RootContextHolder.getBeanFactory().getBean("CustomConversionService");
-		FreeMarkerConfigurer freeMarkerConfigurerByRoot = (FreeMarkerConfigurer) RootContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
+//		FormattingConversionService customConversionServiceByRoot = (FormattingConversionService) RootContextHolder.getBeanFactory().getBean("CustomConversionService");
+//		FreeMarkerConfigurer freeMarkerConfigurerByRoot = (FreeMarkerConfigurer) RootContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
 
 
 		Logger logger = LoggerFactory.getLogger(MyController.class);
