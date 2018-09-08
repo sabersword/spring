@@ -85,9 +85,7 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-.gitignore
-src/main/src/
-src/test/
 target/
 /.idea/
 *.iml
+
