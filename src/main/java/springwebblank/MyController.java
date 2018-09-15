@@ -98,7 +98,6 @@ public class MyController {
 //		FormattingConversionService customConversionServiceByRoot = (FormattingConversionService) RootContextHolder.getBeanFactory().getBean("CustomConversionService");
 //		FreeMarkerConfigurer freeMarkerConfigurerByRoot = (FreeMarkerConfigurer) RootContextHolder.getBeanFactory().getBean("freeMarkerConfigurer");
 
-
 		Logger logger = LoggerFactory.getLogger(MyController.class);
 		logger.debug("this is debug");
 		logger.info("this is info");
