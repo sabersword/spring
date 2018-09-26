@@ -118,9 +118,6 @@ public class MyController {
 //		NodeModel nodeModel = map.get("root");
 //		System.out.println(map.get("root"));
 		
-//		Template template = freeMarkerConfigurer.getConfiguration().getTemplate("MSG11.ftl");
-//		template.process(map, new FileWriter(new File("E:/freemarkerTemplate/target")));
-		
 		return "helloworld";
 	}
 
